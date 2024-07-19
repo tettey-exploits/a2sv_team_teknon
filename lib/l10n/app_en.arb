@@ -1,0 +1,118 @@
+{
+    "language": "English",
+    "@language": {"description": "The current language setting for the application"},
+
+    "appName": "FarmNETS",
+    "@appName": {"description": "The app's name"},
+
+    "kwameGemini": "Kwame Gemini",
+    "@kwameGemini": {"description": "The name of our generative AI"},
+
+    "chats": "CHATS",
+    "@chats": {"description": "Label for the section where user conversations are listed"},
+
+    "aboutUs": "About Us",
+    "@aboutUs": {"description": "Label for the section providing information about the organization or application"},
+
+    "profile": "Profile",
+    "@profile": {"description": "Label for the user's personal profile section"},
+
+    "logout": "Logout",
+    "@logout": {"description": "Label for the action to sign out of the user's account"},
+
+    "theFarmersVoiceBasedPersonalAssistant": "The farmer's voice-based personal assistant.",
+    "@theFarmersVoiceBasedPersonalAssistant": {"description": "Tagline or description for a voice-activated assistant designed for farmers"},
+
+    "close": "Close",
+    "@close": {"description": "Label for a button or action to close a dialog or window"},
+
+    "lastMessage": "Last Message",
+    "@lastMessage": {"description": "Label indicating the most recent message in a conversation"},
+
+    "typeAMessage": "Type a message",
+    "@typeAMessage": {"description": "Placeholder text in the message input field prompting users to enter their message"},
+
+    "extensionOfficer": "Extension officer",
+    "@extensionOfficer": {"description": "Label for an extension officer, who provides support and information to farmers"},
+
+    "welcomeBack": "Welcome Back!",
+    "@welcomeBack": {"description": "Greeting message displayed when a returning user signs in"},
+
+    "pleaseSignInToYourAccount": "Please sign in to your account",
+    "@pleaseSignInToYourAccount": {"description": "Prompt for users to log into their existing account"},
+
+    "email": "Email",
+    "@email": {"description": "Label for the email input field"},
+
+    "password": "Password",
+    "@password": {"description": "Label for the password input field"},
+
+    "signIn": "SIGN IN",
+    "@signIn": {"description": "Button text for logging into an account"},
+
+    "dontHaveAnAccount": "Don't have an account?",
+    "@dontHaveAnAccount": {"description": "Prompt encouraging users without an account to sign up"},
+
+    "signUp": "SIGN UP",
+    "@signUp": {"description": "Button text for creating a new account"},
+
+    "createAnAccount": "Create An Account",
+    "@createAnAccount": {"description": "Header for the account registration page"},
+
+    "uploadAnImageAndFillTheSpacesBelow": "Upload an image and fill the spaces below",
+    "@uploadAnImageAndFillTheSpacesBelow": {"description": "Instruction for users to upload a profile image and complete the registration form"},
+
+    "fullName": "Full Name",
+    "@fullName": {"description": "Label for the full name input field"},
+
+    "confirmPassword": "Confirm Password",
+    "@confirmPassword": {"description": "Label for the password confirmation input field"},
+
+    "alreadyHaveAnAccount": "Already have an account?",
+    "@alreadyHaveAnAccount": {"description": "Prompt for users who already have an account to log in"},
+
+    "errorSendingOTP": "Error in sending OTP",
+    "@errorSendingOTP": {"description": "Error message displayed when there's an issue sending the OTP code"},
+
+    "otpVerification": "OTP Verification",
+    "@otpVerification": {"description": "Title for the OTP verification section"},
+
+    "enter6DigitOTP": "Enter 6 digit OTP",
+    "@enter6DigitOTP": {"description": "Instruction for users to enter the received OTP code"},
+
+    "enterPhoneNumber": "Enter your phone number",
+    "@enterPhoneNumber": {"description": "Instruction for users to enter their phone number for OTP verification"},
+
+    "invalidOTP": "Invalid OTP",
+    "@invalidOTP": {"description": "Error message displayed when the entered OTP code is incorrect"},
+
+    "submitOTP": "Submit",
+    "@submitOTP": {"description": "Button text for submitting the entered OTP code"},
+
+    "settings": "Settings",
+    "@settings": {"description": "Label for the app's settings section"},
+
+    "mode": "Mode",
+    "@mode": {"description": "Label indicating the mode of operation"},
+
+    "speech": "Speech",
+    "@speech": {"description": "Label indicating speech-related settings or actions"},
+
+    "text": "Text",
+    "@text": {"description": "Label indicating text-related settings or actions"},
+
+    "languages": "Languages",
+    "@languages": {"description": "Label indicating language settings or options"},
+
+    "english": "English",
+    "@english": {"description": "Label indicating the English language option"},
+
+    "twi": "Twi",
+    "@twi": {"description": "Label indicating the Twi language option"},
+
+    "ewe": "Ewe",
+    "@ewe": {"description": "Label indicating the Ewe language option"},
+
+    "yoruba": "Yoruba",
+    "@yoruba": {"description": "Label indicating the Yoruba language option"}
+}

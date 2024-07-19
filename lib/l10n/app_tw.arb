@@ -1,0 +1,79 @@
+{
+    "language": "English",
+
+    "appName": "FarmNETS",
+
+    "kwameGemini": "Kwame Gemini",
+
+    "chats": "NKƆMMƆBƆ",
+
+    "aboutUs": "Yɛn ho asɛm",
+
+    "profile": "Ho asɛm",
+
+    "logout": "Fi mu kɔ mu",
+
+    "theFarmersVoiceBasedPersonalAssistant": "Okuafo no ankasa boafo a ogyina ne nne so.",
+
+    "close": "To mu",
+
+    "lastMessage": "Nkrasɛm a Etwa To",
+
+    "typeAMessage": "Kyerɛw nkrasɛm bi",
+
+    "extensionOfficer": "Ɔpanyin a ɔhwɛ ntrɛwmu so",
+
+    "welcomeBack": "Yɛma Wo Akwaaba San!",
+
+    "pleaseSignInToYourAccount": "Yɛsrɛ wo, hyɛ wo akontaabu mu",
+
+    "email": "Ɛlektrɔnik nkrataa a wɔde mena",
+
+    "password": "Paswɛde",
+
+    "signIn": "SIGN IN MU",
+
+    "dontHaveAnAccount": "Wonni akontaabu biara?",
+
+    "signUp": "FA SIGN UP NHYEHYƐE",
+
+    "createAnAccount": "Yɛ Akontaabu Bi",
+
+    "uploadAnImageAndFillTheSpacesBelow": "Fa mfonini bi gu so na hyɛ mmeae a ɛwɔ ase hɔ no ma",
+
+    "fullName": "Edin a Edi Mu",
+
+    "confirmPassword": "Si Password no so dua",
+
+    "alreadyHaveAnAccount": "Wowɔ akontaabu dedaw?",
+
+    "errorSendingOTP": "Mfomso a ɛwɔ OTP a wɔde mena no mu",
+
+    "otpVerification": "OTP Nhwehwɛmu a Wɔde Di Dwuma",
+
+    "enter6DigitOTP": "Hyehyɛ OTP a ɛwɔ digit 6",
+
+    "enterPhoneNumber": "Hyehyɛ wo fon nɔma",
+
+    "invalidOTP": "OTP a ɛnteɛ",
+
+    "submitOTP": "Fa kɔ",
+
+    "settings": "Nsiesiei a Wɔde Yɛ Adwuma",
+
+    "mode": "Ɔkwan a wɔfa so yɛ",
+
+    "speech": "Ɔkasa",
+
+    "text": "Atwerɛ",
+
+    "languages": "Kasa ahorow",
+
+    "english": "Borɔfo",
+
+    "twi": "Twi",
+
+    "ewe": "Ewe",
+
+    "yoruba": "Yoruba"
+}

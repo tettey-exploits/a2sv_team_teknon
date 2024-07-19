@@ -1,0 +1,79 @@
+{
+    "language": "Iŋlisi",
+
+    "appName": "FarmNETS",
+
+    "kwameGemini": "Kwame Gemini",
+
+    "chats": "Dzeɖoɖowo",
+
+    "aboutUs": "Ku ɖe mía ŋu",
+
+    "profile": "Wò nyatakakawo",
+
+    "logout": "Do le eme",
+
+    "theFarmersVoiceBasedPersonalAssistant": "Agbledela la ƒe gbe me ame ŋutɔ ƒe kpeɖeŋutɔ.",
+
+    "close": "Tu",
+
+    "lastMessage": "Gbedasi mamlɛtɔ",
+
+    "typeAMessage": "Ŋlɔ gbedasi aɖe",
+
+    "extensionOfficer": "Kekeɖenudɔdzikpɔla",
+
+    "welcomeBack": "Míexɔ wò nyuie",
+
+    "pleaseSignInToYourAccount": "Taflatse ge ɖe wò akɔnta me",
+
+    "email": "Email dzi",
+
+    "password": "Safuinya",
+
+    "signIn": "De asi ete",
+
+    "dontHaveAnAccount": "Akɔntabubu aɖeke mele asiwò oa?",
+
+    "signUp": "De asi agbalẽ te",
+
+    "createAnAccount": "Wɔ Akɔntabubu",
+
+    "uploadAnImageAndFillTheSpacesBelow": "Tia nɔnɔmetata aɖe eye nàkpe teƒe siwo le ete la ɖo",
+
+    "fullName": "Ŋkɔ Bliboa",
+
+    "confirmPassword": "Kpe Ðe Nyagbea Ŋu",
+
+    "alreadyHaveAnAccount": "Akɔntabubu le asiwò xoxoa?",
+
+    "errorSendingOTP": "Vodada le OTP ɖoɖo ɖa me",
+
+    "otpVerification": "OTP ƒe Kpeɖodzinya",
+
+    "enter6DigitOTP": "Ŋlɔ xexlẽdzesi 6 ƒe OTP",
+
+    "enterPhoneNumber": "Ŋlɔ wò telefon xexlẽdzesi",
+
+    "invalidOTP": "OTP si mesɔ o",
+
+    "submitOTP": "Tsᴐe yi",
+
+    "settings": "Ðoɖowo",
+
+    "mode": "Mɔnu si wozãna",
+
+    "speech": "Nuƒoƒo",
+
+    "text": "Nuŋɔɖi",
+
+    "languages": "Gbegbɔgblɔwo",
+
+    "english": "Iŋlisi",
+
+    "twi": "Blugbe",
+
+    "ewe": "Eʋegbe",
+
+    "yoruba": "Yorubagbe"
+}
