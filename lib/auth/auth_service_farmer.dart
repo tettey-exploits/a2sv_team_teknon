@@ -6,6 +6,7 @@ class AuthServiceFarmer {
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   static String verifyId = "";
+
   // to sent and otp to user
   static Future sentOtp({
     required String phone,
@@ -37,10 +38,12 @@ class AuthServiceFarmer {
     });
   }
 
-  // verify the otp code and login
-  static Future loginWithOtp(
-      {required String otp, required String username}) async {
-    final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
+  // verify the OTP and login
+  /*static Future loginWithOtp({
+    required String otp,
+    required String username,
+  }) async {
+    final FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
     final cred =
         PhoneAuthProvider.credential(verificationId: verifyId, smsCode: otp);
@@ -48,12 +51,49 @@ class AuthServiceFarmer {
     try {
       final userCredential = await _firebaseAuth.signInWithCredential(cred);
       if (userCredential.user != null) {
+
         // Save user info in a separate doc
-        _fireStore.collection("Users").doc(userCredential.user!.uid).set({
+        fireStore.collection("Users").doc(userCredential.user!.uid).set({
           'uid': userCredential.user!.uid,
           'email': userCredential.user!.phoneNumber,
           'username': username,
-          'role': "farmer"
+          'role': "farmer",
+        });
+        return "Success";
+      } else {
+        return "Error in Otp login";
+      }
+    } on FirebaseAuthException catch (e) {
+      return e.message.toString();
+    } catch (e) {
+      return e.toString();
+    }
+  }*/
+
+  // verify the OTP and login
+  static Future loginWithOtp({
+    required String otp,
+    required String username,
+    required String location,
+    required int rating,
+  }) async {
+    final FirebaseFirestore fireStore = FirebaseFirestore.instance;
+
+    final cred =
+        PhoneAuthProvider.credential(verificationId: verifyId, smsCode: otp);
+
+    try {
+      final userCredential = await _firebaseAuth.signInWithCredential(cred);
+      if (userCredential.user != null) {
+
+        // Save farmer profile onto FireStore
+        fireStore.collection("Users").doc(userCredential.user!.uid).set({
+          'uid': userCredential.user!.uid,
+          'email': userCredential.user!.phoneNumber,
+          'username': username,
+          'role': "farmer",
+          'location': location,
+          'rating': rating,
         });
         return "Success";
       } else {
@@ -65,6 +105,7 @@ class AuthServiceFarmer {
       return e.toString();
     }
   }
+
 
   // to logout the user
   static Future logout() async {
