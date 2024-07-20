@@ -3,7 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
 class LocationService {
-  static const BASE_URL = 'http://api.openweathermap.org/data/2.5/weather';
+  static const baseURL = 'http://api.openweathermap.org/data/2.5/weather';
   final String apiKey;
 
   LocationService(this.apiKey);
@@ -18,11 +18,11 @@ class LocationService {
     // fetch the current location
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    // convert the location into a list of placemark objects
+    // convert the location into a list of place mark objects
     List<Placemark> placemarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
 
-    //extract the city name from the first placemark
+    //extract the city name from the first place mark
     String? city = placemarks[0].locality;
     return city ?? "";
   }
