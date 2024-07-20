@@ -7,7 +7,7 @@ This repository is structured as follows:
     - `android/`: Contains the Android-specific configuration and code.
     - `assets/` : Includes assets such as images, fonts, and other resources.
     - `ios/`: Contains the iOS-specific configuration and code.
-    - `lib/`: The main directory for the Dart codebase, structured as follows:
+    - `lib/`: The main directory for the Flutter codebase, structured as follows:
         - auth: Handles authentication-related code.
         - chat_feature: Contains code related to the chat functionality.
         - constants: Stores constant values used throughout the app.
