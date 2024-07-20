@@ -52,7 +52,7 @@ Before you begin, make sure you have the following installed on your development
 
     2. **Move to the cloned repo's directory and switch to the main branch**
     ```
-    cd a2sv_team_teknon
+    cd a2sv_team_teknon/mobile_app
     ```
     ```
     git switch main
