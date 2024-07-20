@@ -13,7 +13,7 @@ import '../../services/get_climate_patterns.dart';
 import '../../services/save_profile.dart';
 import '../../screens/ext_officer/officer_login.dart';
 import 'package:telephony/telephony.dart';
-import '../../screens/farmer/farmer_home_screen.dart';
+//import '../../screens/farmer/farmer_home_screen.dart';
 
 class FarmerAuthScreen extends StatefulWidget {
   const FarmerAuthScreen({super.key});
@@ -36,7 +36,7 @@ class _FarmerAuthScreenState extends State<FarmerAuthScreen> {
   String allInWords = "";
   final SpeechToText _speechToText = SpeechToText();
   bool _nameMention = false;
-  String userName = "";
+  String _farmerName = "";
   final TextEditingController _otpController = TextEditingController();
   final _formKey1 = GlobalKey<FormState>();
   final Telephony telephony = Telephony.instance;
@@ -45,6 +45,7 @@ class _FarmerAuthScreenState extends State<FarmerAuthScreen> {
   final climatePattern = ClimatePattern(apiKey: dotenv.env['LOCATION_API']!);
   final FarmerDB localDb = FarmerDB();
   bool _isLoggingIn = false;
+  bool _isPlayingAudio = false;
 
   void listenToIncomingSMS(BuildContext context) {
     log("Listening to sms.");
@@ -60,8 +61,8 @@ class _FarmerAuthScreenState extends State<FarmerAuthScreen> {
             String otpCode = message.body!.substring(0, 6);
             setState(() {
               _otpController.text = otpCode;
-              // wait for 1 sec and then press handle submit
-              Future.delayed(const Duration(seconds: 10), () {
+              // wait for 3 sec and then press handle submit
+              Future.delayed(const Duration(seconds: 3), () {
                 handleSubmit(context);
               });
             });
@@ -70,48 +71,44 @@ class _FarmerAuthScreenState extends State<FarmerAuthScreen> {
         listenInBackground: false);
   }
 
-// handle after otp is submitted
-  void handleSubmit(BuildContext context) {
+  // handle after otp is submitted
+  Future<void> handleSubmit(BuildContext context) async {
     if (_formKey1.currentState!.validate()) {
+      String cityName = await location.fetchCity();
+      int initialRating = 0;
+
       AuthServiceFarmer.loginWithOtp(
-              otp: _otpController.text, username: userName)
-          .then((value) {
+        otp: _otpController.text,
+        username: _farmerName,
+        location: cityName,
+        rating: initialRating,
+      ).then((value) async {
         if (value == "Success") {
           if (mounted) {
-            Navigator.pop(context);
-            log("it was successful");
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const FarmerHomeScreen()),
-            );
+            //Navigator.pop(context);
+            log("OTP sign-in successful");
+
+            await _saveProfileLocalDB(
+                _farmerName, allInWords, cityName, initialRating);
+            //await saveProfile(_farmerName, allInWords, cityName, 0);
+            //log("Done saving profile details");
           }
         } else {
           if (mounted) {
             Navigator.pop(context);
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(
-                value,
-                style: const TextStyle(color: Colors.white),
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  value,
+                  style: const TextStyle(color: Colors.white),
+                ),
+                backgroundColor: Colors.red,
               ),
-              backgroundColor: Colors.red,
-            ));
+            );
           }
         }
       });
     }
-  }
-
-  bool _isPlayingRecording = false;
-
-  @override
-  void initState() {
-    super.initState();
-    // (B) bug fix
-    player = AudioPlayer();
-    if (mounted) {
-      initSpeech();
-    }
-    playWelcomeNote();
   }
 
   void initSpeech() async {
@@ -121,8 +118,16 @@ class _FarmerAuthScreenState extends State<FarmerAuthScreen> {
     }
   }
 
-  // Possible fix
-  //TODO: check this
+  @override
+  void initState() {
+    super.initState();
+    player = AudioPlayer();
+    if (mounted) {
+      initSpeech();
+    }
+    playWelcomeAudio();
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -186,7 +191,7 @@ class _FarmerAuthScreenState extends State<FarmerAuthScreen> {
                       child: SizedBox(
                         width: 90,
                         height: 90,
-                        child: _isPlayingRecording
+                        child: _isPlayingAudio
                             ? ClipOval(
                                 child: Image.asset(
                                   'assets/app_images/siri.gif',
@@ -222,7 +227,8 @@ class _FarmerAuthScreenState extends State<FarmerAuthScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const OfficerLogin()),
+                            builder: (context) => const OfficerLogin(),
+                          ),
                         );
                       },
                       child: Container(
@@ -259,10 +265,10 @@ class _FarmerAuthScreenState extends State<FarmerAuthScreen> {
     );
   }
 
-  Future<void> playWelcomeNote() async {
+  Future<void> playWelcomeAudio() async {
     setState(() {
       _isWelcomeNotePlaying = true;
-      _isPlayingRecording = true;
+      _isPlayingAudio = true;
     });
     String audioPath = "app_audio/welcome_audio.mp3";
     // TODO: fix error on logout
@@ -275,7 +281,7 @@ class _FarmerAuthScreenState extends State<FarmerAuthScreen> {
     player.onPlayerComplete.listen((_) {
       setState(() {
         _isWelcomeNotePlaying = false;
-        _isPlayingRecording = false;
+        _isPlayingAudio = false;
       });
     });
   }
@@ -306,13 +312,13 @@ class _FarmerAuthScreenState extends State<FarmerAuthScreen> {
     }
 
     if (allInWords.length == 10) {
-      confirmationNote();
+      confirmationAudio();
 
       setState(() {
         _confirmDone = true;
       });
     } else {
-      mistakeNote();
+      playMistakeAudio();
       setState(() {
         _confirmDone = false;
       });
@@ -329,7 +335,7 @@ class _FarmerAuthScreenState extends State<FarmerAuthScreen> {
       });
       askForName();
     } else {
-      mistakeNote();
+      playMistakeAudio();
       setState(() {
         _confirmDone = false;
       });
@@ -356,60 +362,54 @@ class _FarmerAuthScreenState extends State<FarmerAuthScreen> {
     }
   }
 
-  Future<void> confirmationNote() async {
+  Future<void> confirmationAudio() async {
     setState(() {
-      _isPlayingRecording = true;
+      _isPlayingAudio = true;
     });
     String audioPath = "app_audio/confirmation_audio.mp3";
     await player.play(AssetSource(audioPath));
     player.onPlayerComplete.listen((_) {
       setState(() {
-        _isPlayingRecording = false;
+        _isPlayingAudio = false;
       });
     });
   }
 
-  Future<void> mistakeNote() async {
+  Future<void> playMistakeAudio() async {
     setState(() {
-      _isPlayingRecording = true;
+      _isPlayingAudio = true;
     });
     String audioPath = "app_audio/mistake_audio.mp3";
     await player.play(AssetSource(audioPath));
     player.onPlayerComplete.listen((_) {
       setState(() {
-        _isPlayingRecording = false;
+        _isPlayingAudio = false;
       });
     });
   }
 
   Future<void> askForName() async {
     setState(() {
-      _isPlayingRecording = true;
+      _isPlayingAudio = true;
     });
     String audioPath = "app_audio/name_audio.mp3";
     await player.play(AssetSource(audioPath));
     player.onPlayerComplete.listen((_) {
       setState(() {
-        _isPlayingRecording = false;
+        _isPlayingAudio = false;
       });
     });
   }
 
   Future<void> _nameSpeechResult(result) async {
+    String gottenName = result.recognizedWords;
     setState(() {
-      userName = result.recognizedWords;
+      _farmerName = gottenName;
     });
 
     if (_speechToText.isNotListening) {
-      if (userName.isNotEmpty) {
+      if (_farmerName.isNotEmpty) {
         try {
-          // Show loading circle
-          /*showDialog(
-              context: context,
-              builder: (context) {
-                return const Center(child: CircularProgressIndicator());
-              });*/
-
           setState(() {
             // Show loading circle
             _isLoggingIn = true;
@@ -465,55 +465,47 @@ class _FarmerAuthScreenState extends State<FarmerAuthScreen> {
                           style: TextButton.styleFrom(
                             foregroundColor: Colors.amber,
                           ),
-                          onPressed: () => handleSubmit(context),
+                          onPressed: () {
+                            handleSubmit(context);
+                            // TODO: remove if not testing
+                            // This pops the AlertDialog immediately after calling the handleSubmit method
+                            // This was added because we'll be using the test numbers.
+                            // possible bug: might not be able to retrieve code sent to real user's number
+                            if (mounted) {
+                              Navigator.pop(context);
+                            }
+                          },
                           child: Text(AppLocalizations.of(context)!.submitOTP)),
                     ],
                   ),
                 );
               });
-
-          String cityName = await location.fetchCity();
-
-          await saveProfile(userName, allInWords, cityName, 0);
-
-          // Pop the loading circle
-          /*if (mounted) {
-            Navigator.of(context).pop();
-          }*/
-
-          // Pop loading circle
-          setState(() {
-            _isLoggingIn = false;
-          });
         } catch (e) {
-          /*if (mounted) {
-            Navigator.of(context).pop();
-          }*/
-
           // Pop loading circle
           setState(() {
             _isLoggingIn = false;
           });
-          if (kDebugMode) print('Error signing up: $e');
+          log('Error signing up: $e');
         }
+      } else {
+        log("No name gotten");
       }
     }
   }
 
-  Future<void> saveProfile(
+  Future<void> _saveProfileLocalDB(
       String name, String email, String location, int rating) async {
-    String farmerProfileStatus = await SaveProfile().saveToFirestoreFarmer(
+    /* String farmerProfileStatus = await SaveProfile().saveToFirestoreFarmer(
       name: name,
       contact: email,
       location: location,
       rating: rating,
-    );
+    );*/
 
     await localDb.create(name: name, contact: email, location: location);
     List<Farmer> fetchedData = await localDb.fetchAll();
     for (var farmer in fetchedData) {
-      if (kDebugMode) print(farmer.name);
+      log("Names fetched from local DB: ${farmer.name}");
     }
-    log("Save farmer profile status = $farmerProfileStatus");
   }
 }
