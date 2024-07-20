@@ -41,8 +41,8 @@ Before you begin, make sure you have the following installed on your development
     - [Flutter SDK](https://flutter.dev/docs/get-started/install)
     - [Android Studio](https://developer.android.com/studio) (for Android development)
 
-- Download file containing the API keys: <br>
-    Kindly request for the `.env` file by sending an email to ``` oh.shalom.0@gmail.com ```
+- Download the file containing the API keys and put it in the mobile_app/ directory: <br>
+`https://docs.google.com/document/d/1OVzyA3QCfDbDH06a6unHpjvOWa2e076IcD2uLoeoyLw/edit?usp=sharing`
 
 - Follow these steps to build and install the FarmNETS app on your device:
     1. **Clone the Repository:**
