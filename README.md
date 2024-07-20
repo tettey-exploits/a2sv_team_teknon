@@ -3,7 +3,7 @@ Welcome to the FarmNETS GitHub repository. FarmNETS is an LLM-powered mobile app
 
 ## Structure
 This repository is structured as follows:
-* `Mobile application/`:
+* `mobile_app/`: Contains the source code for our Flutter mobile application
     - `android/`: Contains the Android-specific configuration and code.
     - `assets/` : Includes assets such as images, fonts, and other resources.
     - `ios/`: Contains the iOS-specific configuration and code.
@@ -19,8 +19,8 @@ This repository is structured as follows:
         - services: Holds service classes for various functionalities such as - network calls, etc.
         - themes: Manages the app's theme and styling.
         - widgets: Contains reusable UI components.
-* `Colab Notebooks/`:
-    - This section describes the Colab notebooks included in the project.
+* `notebook/`:
+    - This section contains the Colab notebooks used.
 
 ## Purpose
 The purpose of this repository is to provide a collaborative space for development and improvement of the FarmNETS mobile application. By making the repository publicly accessible, we aim to foster community engagement, allowing developers, contributors, and users to explore the codebase, report issues, and suggest enhancements.
