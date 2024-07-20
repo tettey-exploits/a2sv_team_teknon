@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:farmnets/auth/auth_service_officer.dart';
@@ -250,38 +251,38 @@ class _OfficerSignUpState extends State<OfficerSignUp> {
       _isSigningUp = true;
     });
 
-    // Show loading circle
-    /*showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(child: CircularProgressIndicator());
-        });*/
-
     String cityName = await location.fetchCity();
-    if (selectedImagePath != null) {
-      showToast(message: 'Please wait');
-      String resp =
-          await saveProfile(fullName, email, cityName, 0, selectedImagePath!);
+    int initialRating = 0;
+    late Uint8List imageBytes;
 
-      if (kDebugMode) print(resp);
+    if (selectedImagePath != null) {
+      File imageFile = File(selectedImagePath!);
+      imageBytes = await imageFile.readAsBytes();
+
     }
 
     UserCredential? result;
     try {
+      showToast(message: 'Please wait');
       result = await authService.signUpWithEmailPassword(
-          email: email, password: password, username: fullName);
+        email: email,
+        password: password,
+        username: fullName,
+        location: cityName,
+        rating: initialRating,
+        imageFile: imageBytes,
+      );
     } catch (e) {
       if (mounted) {
-        // Pop the loading circle
-        //Navigator.of(context).pop();
         showToast(message: 'Failed to create account: $e');
       }
     }
-
-    if (result == null) {
+    if (result != null) {
+      // Save profile to local storage on sign-up success
+      await saveProfile(
+          fullName, email, cityName, initialRating, selectedImagePath!);
+    } else {
       if (mounted) {
-        // Pop the loading circle
-        /*Navigator.of(context).pop();*/
         showToast(message: 'An error occurred.');
       }
       // Pop the loading circle
@@ -364,10 +365,33 @@ class _OfficerSignUpState extends State<OfficerSignUp> {
         });
   }
 
-  Future<String> saveProfile(String name, String email, String location,
+  Future<void> saveProfile(String name, String email, String location,
+      int rating, String imagePath) async {
+    String savedImagePath = await SaveProfile()
+        .saveToLocalStorage(imagePath: imagePath, contact: email);
+    log("Image saved at = $savedImagePath");
+
+    try {
+      localDb.create(
+          name: name,
+          email: email,
+          location: location,
+          imagePath: savedImagePath);
+    } catch (e) {
+      log("Error saving to local DB: $e");
+    }
+
+    List<ExtensionOfficer> fetchedData = await localDb.fetchAll();
+    for (var officer in fetchedData) {
+      if (kDebugMode) print(officer.name);
+    }
+  }
+
+/*Future<String> saveProfile(String name, String email, String location,
       int rating, String imagePath) async {
     File imageFile = File(imagePath);
     Uint8List imageBytes = await imageFile.readAsBytes();
+
     String response = await SaveProfile().saveToFirestoreOfficer(
         name: name,
         contact: email,
@@ -399,5 +423,5 @@ class _OfficerSignUpState extends State<OfficerSignUp> {
     }
 
     return response;
-  }
+  }*/
 }
