@@ -18,17 +18,18 @@ class SaveProfile {
     return downloadUrl;
   }
 
-  Future<String> saveToFirestoreOfficer(
-      {required String name,
-      required String contact,
-      required String location,
-      required int rating,
-      required Uint8List imageFile}) async {
+  /*Future<String> saveToFirestoreOfficer({
+    required String name,
+    required String contact,
+    required String location,
+    required int rating,
+    required Uint8List imageFile,
+  }) async {
     String resp = "Some Error Occurred.";
     try {
       if (name.isNotEmpty || contact.isNotEmpty) {
         String imageUrl =
-            await uploadImageToFirebase('ProfileImage_$contact', imageFile);
+            await uploadImageToFirebase('profileImage_$contact', imageFile);
         await _fireStore.collection('OfficerProfile').add({
           'name': name,
           'contact': contact,
@@ -43,9 +44,9 @@ class SaveProfile {
     }
 
     return resp;
-  }
+  }*/
 
-  Future<String> saveToFirestoreFarmer({
+  /*Future<String> saveToFirestoreFarmer({
     required String name,
     required String contact,
     required String location,
@@ -67,7 +68,7 @@ class SaveProfile {
     }
 
     return resp;
-  }
+  }*/
 
   Future<String> saveToFirestoreGeminiFarmer({
     required String name,
