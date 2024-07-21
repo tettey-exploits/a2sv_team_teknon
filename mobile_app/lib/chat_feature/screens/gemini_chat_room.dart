@@ -325,12 +325,13 @@ class _GeminiChatRoomState extends State<GeminiChatRoom> {
                 },
               ),
               Expanded(
-                  child: ChatTextField(
-                controller: _messageController,
-                hintText: "Type a message",
-                //obscureText: false,
-                focusNode: myFocusNode,
-              )),
+                child: ChatTextField(
+                  controller: _messageController,
+                  hintText: "Type a message",
+                  //obscureText: false,
+                  focusNode: myFocusNode,
+                ),
+              ),
               Container(
                 decoration: const BoxDecoration(
                     color: Color(0xff25D366), shape: BoxShape.circle),
@@ -350,11 +351,18 @@ class _GeminiChatRoomState extends State<GeminiChatRoom> {
           visible: !isTextMode,
           child: Stack(
             children: [
+              // This is behind the 3 containers containing the IconButtons
+              // Was placed there to fill up the space
               Positioned(
-                top: 15,
+                //top: 10.5,
+                top: ScreenSize.adjustedHeight(context, 1.2),
+                //left: 6,
+                left: ScreenSize.adjustedWidth(context, 1.7),
                 child: Container(
-                  height: 45,
-                  width: 170,
+                  //height: 53,
+                  height: ScreenSize.adjustedHeight(context, 6.1),
+                  //width: 175,
+                  width: ScreenSize.adjustedWidth(context, 40),
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondary,
                     //color: Colors.green,
@@ -368,9 +376,9 @@ class _GeminiChatRoomState extends State<GeminiChatRoom> {
                 children: [
                   Container(
                     //height: 45,
-                    height: ScreenSize.adjustedHeight(context, 5),
+                    height: ScreenSize.adjustedHeight(context, 6),
                     //width: 50,
-                    width: ScreenSize.adjustedWidth(context, 12),
+                    width: ScreenSize.adjustedWidth(context, 13),
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.secondary,
                       borderRadius: const BorderRadius.only(
@@ -424,9 +432,9 @@ class _GeminiChatRoomState extends State<GeminiChatRoom> {
                   ),
                   Container(
                     //height: 45,
-                    height: ScreenSize.adjustedHeight(context, 5),
+                    height: ScreenSize.adjustedHeight(context, 6),
                     //width: 50,
-                    width: ScreenSize.adjustedWidth(context, 12),
+                    width: ScreenSize.adjustedWidth(context, 13),
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.secondary,
                       borderRadius: const BorderRadius.only(

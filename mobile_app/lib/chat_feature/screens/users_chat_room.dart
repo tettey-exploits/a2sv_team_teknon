@@ -257,11 +257,18 @@ class _UsersChatRoomState extends State<UsersChatRoom> {
           visible: !isTextMode,
           child: Stack(
             children: [
+              // This is behind the 3 containers containing the IconButtons
+              // Was placed there to fill up the space
               Positioned(
-                top: 15,
+                //top: 10.5,
+                top: ScreenSize.adjustedHeight(context, 1.2),
+                //left: 6,
+                left: ScreenSize.adjustedWidth(context, 1.7),
                 child: Container(
-                  height: 45,
-                  width: 170,
+                  //height: 53,
+                  height: ScreenSize.adjustedHeight(context, 6.1),
+                  //width: 175,
+                  width: ScreenSize.adjustedWidth(context, 40),
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondary,
                     //color: Colors.green,
@@ -275,9 +282,9 @@ class _UsersChatRoomState extends State<UsersChatRoom> {
                 children: [
                   Container(
                     //height: 45,
-                    height: ScreenSize.adjustedHeight(context, 5),
+                    height: ScreenSize.adjustedHeight(context, 6),
                     //width: 50,
-                    width: ScreenSize.adjustedWidth(context, 12),
+                    width: ScreenSize.adjustedWidth(context, 13),
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.secondary,
                       borderRadius: const BorderRadius.only(
@@ -331,9 +338,9 @@ class _UsersChatRoomState extends State<UsersChatRoom> {
                   ),
                   Container(
                     //height: 45,
-                    height: ScreenSize.adjustedHeight(context, 5),
+                    height: ScreenSize.adjustedHeight(context, 6),
                     //width: 50,
-                    width: ScreenSize.adjustedWidth(context, 12),
+                    width: ScreenSize.adjustedWidth(context, 13),
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.secondary,
                       borderRadius: const BorderRadius.only(
