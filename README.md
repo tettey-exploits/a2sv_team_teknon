@@ -33,7 +33,7 @@ You have two options to get started with our application:
 
 ### Download the APK (for Android)
 Follow this link to download the APK. This is the quickest way to get the app up and running on your device.
-`https://docs.google.com/document/d/1ZKpXeUCqk6obvO1nnf9GG_QI0Fmb1NmTjompdy3xhlE/edit?usp=sharing`
+`https://drive.google.com/file/d/1p0vxAgNzp0CYZX--Y7TLqpl7Ftk1BRpc/view?usp=sharing`
 
 ### Bulid from Source (Tested on Android only)
 - Setup the Development Environment.  
