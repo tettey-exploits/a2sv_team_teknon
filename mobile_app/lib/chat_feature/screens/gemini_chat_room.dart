@@ -231,7 +231,7 @@ class _GeminiChatRoomState extends State<GeminiChatRoom> {
               right: 0,
               bottom: 0,
               top: 0,
-              child: Image.asset("assets/app_images/chat_background.jpg",
+              child: Image.asset("assets/app_images/chat_background_light.jpeg",
                   fit: BoxFit.cover)),
           Column(children: [
             // display all messages

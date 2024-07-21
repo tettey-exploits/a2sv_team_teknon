@@ -113,7 +113,6 @@ flutter:
     - assets/app_audio/
     - assets/app_logo/
     - .env
-    - assets/
 
 
   fonts:

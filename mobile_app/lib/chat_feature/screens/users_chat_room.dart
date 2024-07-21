@@ -8,7 +8,7 @@ import 'package:farmnets/chat_feature/components/audio_controller.dart';
 import 'package:farmnets/chat_feature/widgets/chat_bubble.dart';
 import 'package:farmnets/chat_feature/widgets/chat_text_field.dart';
 import 'package:farmnets/chat_feature/services/chat_service.dart';
-import 'package:farmnets/themes/light_mode.dart';
+//import 'package:farmnets/themes/light_mode.dart';
 import 'package:farmnets/constants/ui_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -150,7 +150,7 @@ class _UsersChatRoomState extends State<UsersChatRoom> {
               right: 0,
               bottom: 0,
               top: 0,
-              child: Image.asset("assets/app_images/chat_background.jpg",
+              child: Image.asset("assets/app_images/chat_background_light.jpeg",
                   fit: BoxFit.cover)),
           Column(children: [
             // display all messages
